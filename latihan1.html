@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membaca Data Json 1</title>
+</head>
+<body>
+    <h2>
+        <hr>
+        Nama : <span id="txNAMA"></span> <br>
+        Tanggal Lahir : <input type="date" id="txTGL"> <br>
+
+        <!--Menjadi Form-->
+        Umur : <span id="txUMUR"></span> <br>
+        <!---->
+
+        Jenis Kelamin : <span id="txJK"></span> <br>
+        Alamat : <span id="txALAMAT"></span> <br>
+        No HP : <span id="txNOHP"></span> <br>
+        <hr>
+    </h2>
+
+    <script>
+        const jsHTTP = new XMLHttpRequest();
+        jsHTTP.open("GET","http://localhost/sesi11/latihan1.php");
+        jsHTTP.send();
+
+        jsHTTP.onload = function(){
+            const isi = JSON.parse(this.responseText);
+            console.log(isi);
+            document.getElementById("txNAMA").innerHTML = isi[0].nama
+            document.getElementById("txTGL").value = isi[0].tgl_lahir
+            document.getElementById("txUMUR").innerHTML = isi[0].umur
+            document.getElementById("txJK").innerHTML = isi[0].jns_kelamin
+            document.getElementById("txALAMAT").innerHTML = isi[0].alamat
+            document.getElementById("txNOHP").innerHTML = isi[0].no_hp
+
+
+        }
+    </script>
+
+</body>
+</html>
